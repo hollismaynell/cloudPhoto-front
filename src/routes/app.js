@@ -100,7 +100,7 @@ const App = ({ children, dispatch, app, loading, location }) => {
       <LocaleProvider locale={formatAntdObj}>
         <div>
           <Helmet>
-            <title>波洛斯</title>
+            <title>云摄影</title>
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             <link rel="shortcut icon" href={logo1} type="image/x-icon" />
             {iconFontJS && <script src={iconFontJS}></script>}
