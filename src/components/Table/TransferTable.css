@@ -1,0 +1,44 @@
+
+.contentInner {
+  position: relative;
+  height: 500px;
+  width: 1270px;
+}
+
+.buttonOperation{
+   margin-bottom: 2px;
+}
+
+.leftTransferTable {
+  font-size: 12px;
+  border: 1px solid #d9d9d9;
+  display: inline-block;
+  border-radius: 4px;
+  vertical-align: middle;
+  position: relative;
+  width: 600px;
+  height: 500px;
+
+}
+
+.rightTransferTable {
+  font-size: 12px;
+  border: 1px solid #d9d9d9;
+  display: inline-block;
+  border-radius: 4px;
+  vertical-align: middle;
+  position: relative;
+  width: 600px;
+  height: 500px;
+
+}
+
+.transferOperation {
+  width: 50px;
+  height: 200px;
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  margin: 0 8px -200px;
+  vertical-align: middle;
+}

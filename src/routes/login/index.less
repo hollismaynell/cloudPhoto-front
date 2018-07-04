@@ -1,0 +1,150 @@
+.loginBox{
+  width: 1200px;
+  height: 100vh;
+  position: absolute;
+  margin: 0 auto;
+  top: 0;
+  margin-left: 50%;
+  left: -600px;
+}
+.form {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  //left:0;
+  margin: auto;
+  width: 350px;
+  z-index: 9000;
+  // border-radius: 50%;
+  height: 350px;
+
+  button {
+    width: 100%;
+  }
+
+  p {
+    color: rgb(204, 204, 204);
+    text-align: center;
+    margin-top: 16px;
+
+    span {
+      &:first-child {
+        margin-right: 16px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 1200px){
+  .form {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left:0;
+    margin: auto;
+    width: 350px;
+    z-index: 9000;
+    // border-radius: 50%;
+    height: 350px;
+  }
+}
+@media screen and (max-width: 330px){
+  .form {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left:0;
+    margin: auto;
+    width: 320px;
+    z-index: 9000;
+    // border-radius: 50%;
+    height: 350px;
+  }
+}
+.logo {
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+  cursor: pointer;
+  margin-bottom: 24px;
+
+  img {
+    width: 90%;
+    margin-right: 8px;
+  }
+
+  span {
+    vertical-align: text-bottom;
+    font-size: 16px;
+    text-transform: uppercase;
+    display: inline-block;
+  }
+}
+.ant-spin-container,
+.ant-spin-nested-loading {
+  height: 100%;
+}
+.register{
+  color: #fff!important;font-size: 14px;cursor: pointer;margin-top: 10px;
+}
+.forgetPW{
+  color: #fff!important;font-size: 14px;cursor: pointer;margin:0;padding:0;text-align: right;
+}
+.myLogin{
+  color:#fff;font-size: 16px;    margin-top: 20px;height: 40px;
+}
+.myLogin:hover{
+  background: #247f7d;color:#fff;font-size: 16px;    border-color: #247f7d;
+}
+.ueserName{
+  background: rgba(255,255,255,0.6);border-radius:5px!important;border:none;border-bottom: 1px solid rgba(255,255,255,0.8);border-radius: 0;font-size: 14px;padding-left: 40px;color: #333;border-bottom: none;outline: medium;height: 40px;
+}
+.ueserIcon1{
+  font-size: 22px;
+  color: #fff;
+  position: absolute;
+  margin-top: 10px;
+  margin-left: 11px;
+  z-index: 999;
+  width: 15px;
+  background: url('../../../public/loginKey.png');
+  height: 18px;
+}
+.ueserIcon2{
+  font-size: 22px;
+  color: #fff;
+  position: absolute;
+  margin-top: 10px;
+  margin-left: 11px;
+  z-index: 999;
+  width: 15px;
+  background: url('../../../public/loginKey.png') 0 -18px;
+  height: 18px;
+}
+.animationBg{
+  width:350px;height:350px;background: rgba(255,255,255,0.05);border-radius: 50%;position: absolute;top:0;left:0;-webkit-filter: blur(2px);
+  -moz-filter: blur(2px);
+  -o-filter: blur(2px);
+  -ms-filter: blur(2px);
+  filter: blur(2px);
+}
+.animationBg2{
+  width:220px;height:220px;background: rgba(255,255,255,0.05);border-radius: 50%;position: absolute;top:120px;left:280px;-webkit-filter: blur(2px);
+  -moz-filter: blur(2px);
+  -o-filter: blur(2px);
+  -ms-filter: blur(2px);
+  filter: blur(2px);
+}
+
+.aToBlock{
+  display: block;
+  line-height: 31px;
+  text-align: right;
+}
+
+.RadioCss{
+  margin: 0 0 0 5px;
+}

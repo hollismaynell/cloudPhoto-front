@@ -1,0 +1,9 @@
+node_modules
+bower_components
+.idea
+lib
+dist/
+src/utils/mockConfig.js
+src/models/appMock.js
+work.md
+.DS_Store

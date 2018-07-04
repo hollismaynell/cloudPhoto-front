@@ -1,0 +1,315 @@
+.black-box{
+  width:100%;height:80px;background: rgba(0,0,0,0.5);position: absolute;top:0;z-index: 9;border-bottom: 4px solid #3aa6a4;
+}
+.logo-box{
+  width: 1200px;height: 80px;margin: 0 auto;line-height: 80px;
+}
+.logo-box img{
+  width: 290px;vertical-align: middle;
+}
+.cover {
+  background: #be77ff;
+  opacity: .23;
+  filter: alpha(opacity=23);
+  height: 100%;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: 1
+}
+
+.banner {
+  width: 100%;
+  height: 100%;
+  min-height: 880px;
+  min-width: 1000px;
+  display: block;
+  background: #be77ff;
+  position: relative;
+  z-index: 0
+}
+
+.banner .slideWrap {
+  position: fixed;
+  width: 100%
+}
+
+.banner .slider {
+  margin: 0 auto;
+  overflow: hidden;
+  padding: 0;
+  -webkit-transition: none;
+  transition: none
+}
+
+.banner .slideBox {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  text-align: center
+}
+
+.banner .slideBox .hd {
+  height: 20px;
+  position: absolute;
+  bottom: 25px;
+  right: 4%;
+  z-index: 4;
+  display: block;
+  transition: all .5s ease 0s
+}
+
+.banner .slideBox .hd ul {
+  overflow: hidden;
+  zoom: 1
+}
+
+.banner .slideBox .hd li {
+  padding: 2px;
+  margin: 0 3px;
+  line-height: 5px;
+  text-align: center;
+  cursor: pointer;
+  display: inline-block;
+  border: 0 solid #fff;
+  border-radius: 50px;
+  opacity: .75
+}
+
+.banner .slideBox .hd li span {
+  background: #f0f0f0;
+  width: 6px;
+  height: 6px;
+  display: inline-block;
+  border-radius: 50px;
+  vertical-align: middle
+}
+
+.banner .slideBox .hd li span p {
+  line-height: 28px;
+  font-size: 24px
+}
+
+.banner .slideBox .hd li span p.f14 {
+  font-size: 14px
+}
+
+.banner .slideBox .hd ul li span i {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  /*background: url(../images/icon-a1.png) no-repeat*/
+}
+
+.banner .slideBox .hd ul li.on {
+  border: 1px solid #fff
+}
+
+.banner .slideBox .hd ul li.on span {
+  background: #fff;
+  color: #fff;
+  -webkit-transition: all .3s ease;
+  -o-transition: all .3s ease;
+  transition: all .3s ease
+}
+
+.banner .slideBox .hd ul li.on span i {
+  /*background: url(../images/icon-a2.png) no-repeat*/
+}
+
+.banner .slideBox .bd {
+  position: relative;
+  height: 100%;
+  z-index: 0;
+  text-align: center
+}
+
+.banner .slideBox .bd li {
+  width: 100%
+}
+
+.banner .slideBox .bd li .bn-img {
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  width: 100%;
+  height: 100%
+}
+
+@-webkit-keyframes scaleIn {
+  0% {
+    -webkit-transform: scale(1.15);
+    transform: scale(1.15);
+    -ms-transform: scale(1.15)
+  }
+  to {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -ms-transform: scale(1)
+  }
+}
+
+@keyframes scaleIn {
+  0% {
+    -webkit-transform: scale(1.15);
+    transform: scale(1.15);
+    -ms-transform: scale(1.15)
+  }
+  to {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -ms-transform: scale(1)
+  }
+}
+
+.banner .slideBox .bd li .bn-img {
+  animation: 20s cubic-bezier(.215, .61, .355, 1) 0s normal none 1 running scaleIn
+}
+
+.banner .font-box {
+  width: 100%;
+  display: block;
+  text-align: center;
+  position: absolute;
+  top: 60%;
+  z-index: 2;
+  line-height: 45px;
+  background: none;
+  transition: all .5s ease 0s
+}
+
+.banner .font-box div {
+  color: #fff;
+  line-height: 36px
+}
+
+.banner .font-box h2 {
+  font-size: 24px;
+  opacity: 1;
+  font-weight: 100
+}
+
+.banner .font-box em {
+  font-size: 24px;
+  clear: both;
+  font-weight: 100
+}
+
+.banner .bd .font-box {
+  top: 42%
+}
+
+.banner .bd .font-box span {
+  display: inline-block;
+  line-height: 0;
+  overflow: hidden;
+  text-align: left
+}
+
+.banner .bd .font-box span img {
+  height: 68px
+}
+
+.banner .bd .font-box span i {
+  height: 2px;
+  border-bottom: 1px solid #e5472e;
+  padding-bottom: 3px;
+  animation-name: line;
+  display: inline-block;
+  animation-duration: 6.5s;
+  -webkit-animation-duration: 6.5s;
+  nimation-delay: .3s;
+  -webkit-animation-delay: .3s;
+  position: relative;
+  width: 100%;
+  opacity: 0;
+  top: 0;
+  left: -250%
+}
+
+.banner .font-box .y {
+  width: 26px;
+  height: 26px;
+  display: inline-block;
+  border: 8px solid rgba(255, 255, 255, 1);
+  border-radius: 100px;
+  position: relative;
+  top: -40px;
+  margin-left: 38px
+}
+
+.banner .bd .font-box .ft-t {
+  line-height: 20px;
+  color: #fff;
+  font-size: 20px;
+  font-family: 微软雅黑;
+  font-weight: 200;
+  margin-top: -2px;
+  letter-spacing: 4px
+}
+
+.banner .bd .font-box .ft-t img {
+  width: 368px;
+  height: 20px
+}
+
+.banner .bd .font-box .slideFt {
+  margin-top: 0px
+}
+
+.banner .slideBox a.more {
+  width: 156px;
+  height: 42px;
+  line-height: 40px;
+  display: inline-block;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, .5);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  margin-top: 1.5%;
+  opacity: 1
+}
+
+.banner .slideBox a.more:hover {
+  background: #fff;
+  transition-delay: .3s
+}
+
+.banner .slideBox a:hover.more {
+  text-decoration: none;
+  color: #333;
+  opacity: 1
+}
+
+.banner .slideBox a:hover.more em {
+  color: #333
+}
+
+.banner .slideBox a.more span {
+  background: #fff;
+  width: 0;
+  height: 100%;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  -webkit-transition: all .5s ease;
+  -o-transition: all .5s ease;
+  transition: all .5s ease
+}
+
+.banner .slideBox a:hover.more span {
+  width: 100%
+}
+
+.banner .slideBox a.more em {
+  position: relative;
+  z-index: 2;
+  font-size: 20px;
+  color: rgba(255, 255, 255, .7)
+}
