@@ -3,6 +3,7 @@
 .layout {
   position: relative;
   height: 100vh;
+  padding: 0 10vw;
 
   &.withnavbar {
     .main {
@@ -70,15 +71,14 @@
   }
 
   .sider {
-    width: 224px;
+    width:100vw;
     background: #595757;
     position: absolute;
     overflow: visible;
     padding-bottom: 24px;
-    height: 100vh;
+    height: 1vh;
     transition: @transition-ease-out;
     box-shadow: @shadow-1;
-    color: #999;
     // menu背景
     &.light {
       background: #cff0f1;
@@ -149,8 +149,6 @@
           background: #def7f6;
         }
       }
-      .ant-menu-dark{
-      }
       .ant-menu-dark,
       .ant-menu-dark .ant-menu-sub {
         color: #999;
@@ -174,10 +172,6 @@
         &:hover {
           &::-webkit-scrollbar-thumb {
             background-color: rgba(0, 0, 0, 0.2);
-          }
-        }
-        &.ant-menu-submenu-inline{
-          .ant-menu-inline{
           }
         }
         &.ant-menu-vertical {
@@ -209,7 +203,7 @@
   }
 
   .main {
-    margin-left: 224px;
+    // margin-left: 224px;
     overflow: auto;
     height: 100vh;
     transition: @transition-ease-out;

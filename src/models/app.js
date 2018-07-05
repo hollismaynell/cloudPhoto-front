@@ -9,6 +9,7 @@ import zHcN from '../utils/zh_CN'
 import eNuS from '../utils/en_US'
 import enUS from 'antd/lib/locale-provider/en_US'
 // import zhCN from 'antd/lib/locale-provider/zh_TW'
+const menuList = require('../utils/menu.js')
 
 export default {
   namespace: 'app',
@@ -16,7 +17,21 @@ export default {
     user: {},
     formatType: 'zh_CN',
     formatAntdType: 'zhCN',
-    menu: [],
+    // menu: [{
+    //   key: 1,
+    //   title: 'logo',
+    //   url: '',
+    //   children: [],
+    // }, {
+    //   key: 2,
+    //   title: '首页',
+    //   url: '',
+    // }, {
+    //   key: 3,
+    //   title: '相册展示',
+    //   url: '',
+    // }],
+    menu: menuList,
     signN: '',
     signP: '',
     keyy: 1,
@@ -27,7 +42,9 @@ export default {
     siderFold: localStorage.getItem(`${prefix}siderFold`) === 'true',
     darkTheme: localStorage.getItem(`${prefix}darkTheme`) === 'true',
     isNavbar: document.body.clientWidth < 769,
-    navOpenKeys: JSON.parse(localStorage.getItem(`${prefix}navOpenKeys`)) || [],
+    navOpenKeys: ['logo', '首页', '相册展示'],
+    // 默认展开的菜单
+    // navOpenKeys: JSON.parse(localStorage.getItem(`${prefix}navOpenKeys`)) || [],
   },
   subscriptions: {
 

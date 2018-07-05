@@ -7,7 +7,7 @@ module.exports = {
   webUrl1: '/poros',
   name: 'poros',
   prefix: 'Poros',
-  footerText: 'Poros 版权所有',
+  footerText: '云摄影 版权所有',
   logo2: `${local}/blsLogo.png`,
   logo1: `${local}/blsLogo-2.png`,
   smallLogo: `${local}/small-logo.png`,

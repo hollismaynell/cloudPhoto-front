@@ -1,12 +1,24 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Icon, Switch } from 'antd'
 import styles from './Layout.less'
-import { config } from '../../utils'
+// import { config } from '../../utils'
 import Menus from './Menu'
-import { FormattedMessage } from 'react-intl'
+// const SubMenu = Menus.SubMenu
+// import { Icon } from 'antd'
+// import { FormattedMessage } from 'react-intl'
 
-const Sider = ({ siderFold, darkTheme, location, changeTheme, navOpenKeys, changeOpenKeys, menu, app }) => {
+const Sider = ({ ...siderProps }) => {
+  const {
+    menu,
+    siderFold,
+    darkTheme,
+    navOpenKeys,
+    // user,
+    // logout,
+    changeOpenKeys,
+    location,
+    // app,
+  } = siderProps
   const menusProps = {
     menu,
     siderFold,
@@ -14,33 +26,33 @@ const Sider = ({ siderFold, darkTheme, location, changeTheme, navOpenKeys, chang
     location,
     navOpenKeys,
     changeOpenKeys,
+    mode: 'horizontal',
   }
+  // let handleClickMenu = e => e.key === 'logout' && logout()
   return (
     <div>
       <div className={styles.logo}>
-        <div className={styles.logoIN}>
+        {/* <div className={styles.logoIN}>
           <img alt={'logo'} src={config.logo2} />
-        </div>
+        </div> */}
         {/* {siderFold ? '' : <span>{config.name}</span>}*/}
       </div>
       <Menus {...menusProps} />
-      {!siderFold ? <div className={styles.switchtheme}>
-        <span><Icon type="bulb" /><FormattedMessage id={app.format.switchTheme} /></span>
-        <Switch onChange={changeTheme} defaultChecked={darkTheme} checkedChildren="Dark" unCheckedChildren="Light" />
-      </div> : ''}
+      {/* <Menus style={{ background: 'none' }} mode="horizontal" onClick={handleClickMenu}>
+        <SubMenu style={{ float: 'right' }} title={< span > <Icon type="user" /> {user.username} </span>} >
+          <Menus.Item key="logout">
+            <FormattedMessage id={app.format.signOut} />
+          </Menus.Item>
+        </SubMenu>
+      </Menus> */}
+      {/* {!siderFold ? <div className={styles.switchtheme}>
+      </div> : ''} */}
     </div>
   )
 }
 
 Sider.propTypes = {
-  menu: PropTypes.array,
-  app: PropTypes.object,
-  siderFold: PropTypes.bool,
-  darkTheme: PropTypes.bool,
-  location: PropTypes.object,
-  changeTheme: PropTypes.func,
-  navOpenKeys: PropTypes.array,
-  changeOpenKeys: PropTypes.func,
+  siderProps: PropTypes.object,
 }
 
 export default Sider

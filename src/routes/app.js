@@ -75,6 +75,10 @@ const App = ({ children, dispatch, app, loading, location }) => {
     siderFold,
     darkTheme,
     navOpenKeys,
+    user,
+    logout () {
+      dispatch({ type: 'app/logout' })
+    },
     changeTheme () {
       dispatch({ type: 'app/switchTheme' })
     },
@@ -109,9 +113,13 @@ const App = ({ children, dispatch, app, loading, location }) => {
             {iconMenuCSS && <link rel="stylesheet" href={iconMenuCSS} />}
           </Helmet>
           <div className={classnames(styles.layout, { [styles.fold]: isNavbar ? false : siderFold }, { [styles.withnavbar]: isNavbar })}>
-            {!isNavbar ? <aside className={classnames(styles.sider, { [styles.light]: !darkTheme })}>
+            {/* {!isNavbar ? <aside className={classnames(styles.sider, { [styles.light]: !darkTheme })}>
               <Sider {...siderProps} />
-            </aside> : ''}
+            </aside> : ''} */}
+            {/* <aside className={classnames(styles.sider, { [styles.light]: !darkTheme })}>
+              <Sider {...siderProps} />
+            </aside> */}
+            <Sider {...siderProps} />
             <div className={styles.main}>
               <Header {...headerProps} />
               <Bread {...breadProps} />
