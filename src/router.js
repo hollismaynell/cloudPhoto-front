@@ -122,53 +122,6 @@ const Routers = function ({ history, app }) {
             }, 'sysytemManage')
           },
         }, {
-          /* 批量查询 */
-          path: `${webUrl}/queryBatch`,
-          getComponent (nextState, cb) {
-            require.ensure([], require => {
-              registerModel(app, require('./models/app'))
-              registerModel(app, require('./models/batch/queryBatch.model'))
-              cb(null, require('./routes/batch/queryBatch'))
-            }, 'jobLogDetail')
-          },
-        }, {
-          /* 超时批量处理 */
-          path: `${webUrl}/queryBatTxnTimeout`,
-          getComponent (nextState, cb) {
-            require.ensure([], require => {
-              registerModel(app, require('./models/app'))
-              registerModel(app, require('./models/batch/queryBatTxnTimeout.model'))
-              cb(null, require('./routes/batch/queryBatTxnTimeout'))
-            }, 'queryBatTxnTimeout')
-          },
-        }, {
-          /* 单条查询 */
-          path: `${webUrl}/querySingle`,
-          getComponent (nextState, cb) {
-            require.ensure([], require => {
-              registerModel(app, require('./models/single/querySingle.model'))
-              cb(null, require('./routes/single/querySingle'))
-            }, 'querySingle')
-          },
-        }, {
-          /* 签约查询 */
-          path: `${webUrl}/querySignList`,
-          getComponent (nextState, cb) {
-            require.ensure([], require => {
-              registerModel(app, require('./models/signManage/queryList.model'))
-              cb(null, require('./routes/signManage/queryList'))
-            }, 'querySignList')
-          },
-        }, {
-          /* 主动收款接口 */
-          path: `${webUrl}/webSingleTrade`,
-          getComponent (nextState, cb) {
-            require.ensure([], require => {
-              registerModel(app, require('./models/webSingleTrade/webSingleTrade.model'))
-              cb(null, require('./routes/webSingleTrade/querySingle'))
-            }, 'testSingleTrade')
-          },
-        }, {
           path: '*',
           getComponent (nextState, cb) {
             require.ensure([], require => {
