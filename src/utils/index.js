@@ -5,6 +5,7 @@ import { color } from './theme'
 import lodash from 'lodash'
 import editCell from './editCell'
 import moment from 'moment'
+import menuHeader from './menu.header'
 
 
 // 连字符转驼峰
@@ -214,4 +215,5 @@ module.exports = {
   arrayToTree,
   editCell,
   translateData,
+  menuHeader,
 }

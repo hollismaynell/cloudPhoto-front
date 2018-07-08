@@ -13,11 +13,12 @@ import { IntlProvider } from 'react-intl'
 const { prefix } = config
 
 
-const { Header, Bread, Footer, Sider, styles } = Layout
+// const { Header, Bread, Footer, Sider, styles } = Layout
+const { Header, Sider, styles, Footer } = Layout
 let lastHref
 
 const App = ({ children, dispatch, app, loading, location }) => {
-  const { user, siderFold, darkTheme, isNavbar, menuPopoverVisible, changeLanguage, keyy, formatAntdObj, navOpenKeys, menu, format } = app
+  const { user, siderFold, darkTheme, isNavbar, menuPopoverVisible, changeLanguage, formatAntdObj, navOpenKeys, menu, format, keyy } = app
   const href = window.location.href
 
   let formatAntd = ''
@@ -46,6 +47,7 @@ const App = ({ children, dispatch, app, loading, location }) => {
   }
 
   const headerProps = {
+    dispatch,
     menu,
     app,
     changeLanguage,
@@ -55,17 +57,8 @@ const App = ({ children, dispatch, app, loading, location }) => {
     isNavbar,
     menuPopoverVisible,
     navOpenKeys,
-    switchMenuPopover () {
-      dispatch({ type: 'app/switchMenuPopver' })
-    },
     logout () {
       dispatch({ type: 'app/logout' })
-    },
-    switchSider () {
-      dispatch({ type: 'app/switchSider' })
-    },
-    changeOpenKeys (openKeys) {
-      dispatch({ type: 'app/handleNavOpenKeys', payload: { navOpenKeys: openKeys } })
     },
   }
 
@@ -87,15 +80,15 @@ const App = ({ children, dispatch, app, loading, location }) => {
       dispatch({ type: 'app/handleNavOpenKeys', payload: { navOpenKeys: openKeys } })
     },
   }
-
-  const breadProps = {
-    menu,
-  }
+  // const breadProps = {
+  //   menu,
+  // }
 
   if (config.openPages && config.openPages.indexOf(location.pathname) > -1) {
     return <div>{children}</div>
   }
   const { iconFontJS, iconFontCSS, logo1, iconMenuCSS, iconMenuJS } = config
+
   return (
     <IntlProvider
       locale={'en'}
@@ -119,10 +112,11 @@ const App = ({ children, dispatch, app, loading, location }) => {
             {/* <aside className={classnames(styles.sider, { [styles.light]: !darkTheme })}>
               <Sider {...siderProps} />
             </aside> */}
-            <Sider {...siderProps} />
             <div className={styles.main}>
+              <div className={styles.siderMenu} >
+                <Sider {...siderProps} />
+              </div>
               <Header {...headerProps} />
-              <Bread {...breadProps} />
               <div className={styles.container}>
                 <div key={keyy} className={styles.content}>
                   {children}

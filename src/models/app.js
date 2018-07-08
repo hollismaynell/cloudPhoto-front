@@ -45,6 +45,7 @@ export default {
     navOpenKeys: ['logo', '首页', '相册展示'],
     // 默认展开的菜单
     // navOpenKeys: JSON.parse(localStorage.getItem(`${prefix}navOpenKeys`)) || [],
+    tabPaneTitle: '设置基本信息',
   },
   subscriptions: {
 
@@ -61,9 +62,25 @@ export default {
 
   },
   effects: {
-    *query ({
-              payload,
-            }, { call, put }) {
+    // 定向到活动管理页面
+    *goToActivityManege ({ payload }, { put }) {
+      yield put(routerRedux.push({
+        pathname: `${webUrl}/routes/activityManage`,
+      }))
+    },
+
+    // 更改新建活动页面title
+    *setTabPaneTitle ({ payload }, { put }) {
+      debugger
+      yield put({
+        type: 'setTabPaneTitlesu',
+        payload: payload,
+      })
+    },
+
+    * query ({
+      payload,
+    }, { call, put }) {
       let token = Cookies.get('token')
       if (token === undefined) {
         if (config.openPages && config.openPages.indexOf(location.pathname) < 0) {
@@ -124,8 +141,8 @@ export default {
       }
     },
     *logout ({
-               payload,
-             }, { call }) {
+      payload,
+    }, { call }) {
       const data = yield call(logout, parse(payload))
       if (data.success) {
         window.location = location.origin
@@ -139,9 +156,9 @@ export default {
     },
 
     *changeNavbar ({
-                     payload,
-                   }, { put, select }) {
-      const { app } = yield(select(_ => _))
+      payload,
+    }, { put, select }) {
+      const { app } = yield (select(_ => _))
       const isNavbar = document.body.clientWidth < 769
       if (isNavbar !== app.isNavbar) {
         yield put({ type: 'handleNavbar', payload: isNavbar })

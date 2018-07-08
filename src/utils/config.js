@@ -26,7 +26,21 @@ module.exports = {
   CORS: [],
   openPages: ['/poros/login'],
   apiPrefix: '/api',
-
+  carouselImg1: `${local}/carouselImg1.png`,
+  carouselImg2: `${local}/carouselImg2.png`,
+  carouselImg3: `${local}/carouselImg3.png`,
+  carouselImg4: `${local}/carouselImg4.png`,
+  bannerplatform: `${local}/banner-platform.png`,
+  partner1: `${local}/partner1.png`,
+  partner2: `${local}/partner2.png`,
+  partner3: `${local}/partner3.png`,
+  partner4: `${local}/partner4.png`,
+  partner5: `${local}/partner5.png`,
+  erCode: `${local}/erCode.png`,
+  waterMark: `${local}/waterMark.png`,
+  cat: `${local}/cat.png`,
+  black: `${local}/black.png`,
+  TopBanner: `${local}/TopBanner.png`,
   api: {
     /* **** 登录 *******/
     // 用户登录

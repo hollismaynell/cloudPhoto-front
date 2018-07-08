@@ -92,6 +92,26 @@ const Routers = function ({ history, app }) {
             }, 'usersManage')
           },
         }, {
+          /* 活动管理 */
+          path: `${webUrl}/routes/activityManage`,
+          getComponent (nextState, cb) {
+            require.ensure([], require => {
+              registerModel(app, require('./models/app'))
+              registerModel(app, require('./models/activityManage.model'))
+              cb(null, require('./routes/activityManage'))
+            }, 'activityManage')
+          },
+        }, {
+          /* 新建活动 */
+          path: `${webUrl}/routes/newActivity`,
+          getComponent (nextState, cb) {
+            require.ensure([], require => {
+              registerModel(app, require('./models/app'))
+              registerModel(app, require('./models/newActivity.model'))
+              cb(null, require('./routes/newActivity'))
+            }, 'newActivity')
+          },
+        }, {
           /* 系统管理-批量系统管理*/
           path: `${webUrl}/node/systemManage`,
           getComponent (nextState, cb) {

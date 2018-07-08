@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styles from './Layout.less'
+import styles from './Sider.less'
 // import { config } from '../../utils'
 import Menus from './Menu'
 // const SubMenu = Menus.SubMenu
@@ -20,6 +20,7 @@ const Sider = ({ ...siderProps }) => {
     // app,
   } = siderProps
   const menusProps = {
+    styles,
     menu,
     siderFold,
     darkTheme,
@@ -30,24 +31,7 @@ const Sider = ({ ...siderProps }) => {
   }
   // let handleClickMenu = e => e.key === 'logout' && logout()
   return (
-    <div>
-      <div className={styles.logo}>
-        {/* <div className={styles.logoIN}>
-          <img alt={'logo'} src={config.logo2} />
-        </div> */}
-        {/* {siderFold ? '' : <span>{config.name}</span>}*/}
-      </div>
-      <Menus {...menusProps} />
-      {/* <Menus style={{ background: 'none' }} mode="horizontal" onClick={handleClickMenu}>
-        <SubMenu style={{ float: 'right' }} title={< span > <Icon type="user" /> {user.username} </span>} >
-          <Menus.Item key="logout">
-            <FormattedMessage id={app.format.signOut} />
-          </Menus.Item>
-        </SubMenu>
-      </Menus> */}
-      {/* {!siderFold ? <div className={styles.switchtheme}>
-      </div> : ''} */}
-    </div>
+    <Menus {...menusProps} style={{ color: '#ffffff' }} />
   )
 }
 
