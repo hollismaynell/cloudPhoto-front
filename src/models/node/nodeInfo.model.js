@@ -207,7 +207,7 @@ export default modelExtend({
     setup ({ dispatch, history }) {
       history.listen(location => {
         console.log(location.pathname)
-        if (location.pathname === '/poros/node/nodeInfo') {
+        if (location.pathname === '/cloudPhoto/node/nodeInfo') {
           dispatch({
             type: 'query',
           })

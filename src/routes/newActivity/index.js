@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'dva'
 import styles from './index.less'
 import { Tabs, Row } from 'antd'
-import { BasicInfo, PhotoGroup, Watermark, StartPage, TopBanner, BottomBanner } from './components'
+import { BasicInfo, PhotoGroup, Watermark, StartPage, TopBanner, BottomBanner, CameraMan, Retoucher } from './components'
 import MyBread from '../../components/MyBread'
 
 const TabPane = Tabs.TabPane
@@ -14,13 +14,10 @@ const rowProps = {
   lg: 24,
 }
 
-const NewActivity = ({ ...newActivityPorp }) => {
-  debugger
-  const { location, dispatch, loading, tabPaneTitle } = newActivityPorp
-  debugger
+const NewActivity = ({ location, dispatch, loading, newActivity }) => {
+  const { tabPaneTitle } = newActivity
   const basicProps = { location, dispatch, loading }
   const handleKeyChange = (key) => {
-    debugger
     let title
     switch (key) {
       case '1':
@@ -52,14 +49,13 @@ const NewActivity = ({ ...newActivityPorp }) => {
         break
       default:
     }
+    debugger
     dispatch({
-      type: 'app/setTabPaneTitle',
+      type: 'newActivity/setTabPaneTitle',
       payload: {
         tabPaneTitle: title,
       },
     })
-    tabPaneTitle
-    debugger
   }
   return (
     <div className={styles.normalWrap} >
@@ -71,12 +67,14 @@ const NewActivity = ({ ...newActivityPorp }) => {
       </div>
       <MyBread />
       <Row className={styles.Tips} {...rowProps}>
-        <h6 style={{ fontSize: '1.3rem', fontWeight: 600, lineHeight: '3rem' }}>设置基本信息</h6>
-        <h6 style={{ fontSize: '0.9rem', color: '#777', lineHeight: '2.2rem', fontWeight: 50 }}>张文文小姐和李时时先生的婚礼</h6>
-        <p style={{ fontSize: '0.8rem', color: '#aaa', lineHeight: '2rem', fontWeight: 50 }}>2018-03-02 青岛市黄岛区希尔顿大酒店</p>
+        <h6 style={{ fontSize: '1.3rem', fontWeight: 600, lineHeight: '3rem' }}>{tabPaneTitle}</h6>
+        {tabPaneTitle === '设置基本信息' ? '' : <span>
+          <h6 style={{ fontSize: '0.9rem', color: '#777', lineHeight: '2.2rem', fontWeight: 50 }} >张文文小姐和李时时先生的婚礼</h6>
+          <p style={{ fontSize: '0.8rem', color: '#aaa', lineHeight: '2rem', fontWeight: 50 }} >2018-03-02 青岛市黄岛区希尔顿大酒店</p>
+        </span>}
         <hr />
       </Row>
-      <Tabs className={styles.normal} tabPosition="left" onChange={handleKeyChange} >
+      <Tabs className={styles.normal} tabPosition="left" onTabClick={handleKeyChange} >
         <TabPane tab="设置基本信息" key="1" >
           <BasicInfo {...basicProps} />
         </TabPane>
@@ -95,8 +93,12 @@ const NewActivity = ({ ...newActivityPorp }) => {
         <TabPane tab="设置底部推广栏" key="6" >
           <BottomBanner />
         </TabPane>
-        <TabPane tab="添加修图师" key="7" />
-        <TabPane tab="添加摄影师" key="8" />
+        <TabPane tab="添加修图师" key="7" >
+          <Retoucher />
+        </TabPane>
+        <TabPane tab="添加摄影师" key="8" >
+          <CameraMan />
+        </TabPane>
         <TabPane tab="设置模板" key="9" />
       </Tabs>
     </div>
@@ -104,7 +106,10 @@ const NewActivity = ({ ...newActivityPorp }) => {
 }
 
 NewActivity.propTypes = {
-  newActivityPorp: PropTypes.object,
+  newActivity: PropTypes.object,
+  loading: PropTypes.object,
+  location: PropTypes.object,
+  dispatch: PropTypes.func,
 }
 
-export default connect(({ newActivity, loading }) => ({ newActivity, loading: loading.models.newActivity }))(NewActivity)
+export default connect(({ loading, newActivity }) => ({ loading, newActivity }))(NewActivity)

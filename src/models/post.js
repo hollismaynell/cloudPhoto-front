@@ -9,7 +9,7 @@ export default modelExtend(pageModel, {
   subscriptions: {
     setup ({ dispatch, history }) {
       history.listen(location => {
-        if (location.pathname === '/poros/post') {
+        if (location.pathname === '/cloudPhoto/post') {
           dispatch({ type: 'query', payload: {
             status: 2,
             ...location.query,

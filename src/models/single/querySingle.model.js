@@ -117,7 +117,7 @@ export default modelExtend(pageModel, {
       const timeEarlier = (`timeEarlier=${payload.timeEarlier !== undefined ? payload.timeEarlier : ''}`)
       const timeLater = (`timeLater=${payload.timeLater !== undefined ? payload.timeLater : ''}`)
       console.log(pyAcctName)
-      yield window.location.href = `${location.origin}/poros-web/importSingleExcel?${bizPk}&${pyAcctName}&${pyAcctCtfNo}&${timeEarlier}&${timeLater}&${txnSts}`
+      yield window.location.href = `${location.origin}/cloudPhoto-web/importSingleExcel?${bizPk}&${pyAcctName}&${pyAcctCtfNo}&${timeEarlier}&${timeLater}&${txnSts}`
     },
   },
 

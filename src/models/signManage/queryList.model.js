@@ -89,7 +89,7 @@ export default modelExtend(pageModel, {
       const pyAcctCtfNo = (`pyAcctCtfNo=${payload.pyAcctCtfNo !== undefined ? payload.pyAcctCtfNo : ''}`)
       const timeEarlier = (`timeEarlier=${payload.timeEarlier !== undefined ? payload.timeEarlier : ''}`)
       const timeLater = (`timeLater=${payload.timeLater !== undefined ? payload.timeLater : ''}`)
-      yield window.location.href = `${location.origin}/poros-web/importSignExcel?${pyAcctName}&${pyAcctCtfNo}&${timeEarlier}&${timeLater}&${txnSts}`
+      yield window.location.href = `${location.origin}/cloudPhoto-web/importSignExcel?${pyAcctName}&${pyAcctCtfNo}&${timeEarlier}&${timeLater}&${txnSts}`
     },
   },
 

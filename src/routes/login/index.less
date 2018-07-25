@@ -1,11 +1,25 @@
 .loginBox{
-  width: 1200px;
+  width: 100vw;
   height: 100vh;
   position: absolute;
   margin: 0 auto;
   top: 0;
-  margin-left: 50%;
-  left: -600px;
+  // margin-left: 50%;
+  // left: -600px;
+  background: url(../../../public/loginBg.png) 0 0 fixed no-repeat;
+  background-size: cover;
+
+  :global {
+    .ant-tabs-nav .ant-tabs-tab-active {
+      color: #000000;
+      font-size: 1.1rem;
+      font-weight: 400;
+    }
+    .ant-form label {
+      font-size: 0.6rem;
+    }
+  }
+  
 }
 .form {
   position: absolute;
@@ -15,7 +29,7 @@
   bottom: 0;
   //left:0;
   margin: auto;
-  width: 350px;
+  width: 400px;
   z-index: 9000;
   // border-radius: 50%;
   height: 350px;
@@ -87,30 +101,40 @@
 .ant-spin-nested-loading {
   height: 100%;
 }
+:global{
+  .ant-form-item{
+    margin-bottom: 28px;
+  }
+}
+
 .register{
   color: #fff!important;font-size: 14px;cursor: pointer;margin-top: 10px;
 }
 .forgetPW{
-  color: #fff!important;font-size: 14px;cursor: pointer;margin:0;padding:0;text-align: right;
+  font-size: 0.8rem;
 }
 .myLogin{
-  color:#fff;font-size: 16px;    margin-top: 20px;height: 40px;
+  color:#fff;font-size: 0.8rem;
+  font-weight: 300;
+  margin-top: -10px;height: 30px;
 }
 .myLogin:hover{
   background: #247f7d;color:#fff;font-size: 16px;    border-color: #247f7d;
 }
 .ueserName{
-  background: rgba(255,255,255,0.6);border-radius:5px!important;border:none;border-bottom: 1px solid rgba(255,255,255,0.8);border-radius: 0;font-size: 14px;padding-left: 40px;color: #333;border-bottom: none;outline: medium;height: 40px;
+  background: rgba(255,255,255,0.6);border-radius:5px!important;border-radius: 0;font-size: 14px;padding-left: 40px;color: #333;outline: medium;height: 40px;
 }
 .ueserIcon1{
-  font-size: 22px;
-  color: #fff;
+  font-size: 11px;
+  color: #1890ff;
   position: absolute;
   margin-top: 10px;
   margin-left: 11px;
   z-index: 999;
   width: 15px;
-  background: url('../../../public/loginKey.png');
+  background: url('../../../public/user.png') no-repeat;
+  background-size: cover;
+  background-size: 70% 70%;
   height: 18px;
 }
 .ueserIcon2{
@@ -121,7 +145,8 @@
   margin-left: 11px;
   z-index: 999;
   width: 15px;
-  background: url('../../../public/loginKey.png') 0 -18px;
+  background: url('../../../public/lock.png') no-repeat;
+  background-size: 70% 70%;
   height: 18px;
 }
 .animationBg{
@@ -143,8 +168,11 @@
   display: block;
   line-height: 31px;
   text-align: right;
+  font-size: 0.6rem;
 }
 
 .RadioCss{
-  margin: 0 0 0 5px;
+  margin: 0 0 0 3px;
+  font-weight: 400;
 }
+

@@ -147,12 +147,6 @@ const pageHome = () => {
     <BackTop>
       <Icon type="up-circle" style={{ color: '#1890ff', fontSize: '2.5rem' }} />
     </BackTop>
-    {/* <div className={styles.container}>
-  <div key={keyy} className={styles.content}>
-    {children}
-  </div>
-</div> */}
-    {/* <Footer /> */}
   </div>)
 }
 

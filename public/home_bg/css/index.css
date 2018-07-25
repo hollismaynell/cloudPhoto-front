@@ -7,8 +7,8 @@
 .logo-box img{
   width: 290px;vertical-align: middle;
 }
+
 .cover {
-  background: #be77ff;
   opacity: .23;
   filter: alpha(opacity=23);
   height: 100%;
@@ -26,7 +26,7 @@
   min-height: 880px;
   min-width: 1000px;
   display: block;
-  background: #be77ff;
+  background: url(../../../public/loginBg.png) top center fixed no-repeat;
   position: relative;
   z-index: 0
 }

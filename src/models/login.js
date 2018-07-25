@@ -1,5 +1,5 @@
 import { login } from '../services/login'
-import { routerRedux } from 'dva/router'
+// import { routerRedux } from 'dva/router'
 // import { queryURL } from '../utils'
 
 export default {
@@ -14,16 +14,14 @@ export default {
             }, { put, call }) {
       yield put({ type: 'showLoginLoading' })
       const data = yield call(login, payload)
-      data
-      yield put({ type: 'hideLoginLoading' })
-      // 暂时跳过验证，直接去首页
-      yield put(routerRedux.push('/poros/dashboard'))
-      // if (data.success) {
-      //   yield put({ type: 'app/query' })
-      //   yield put(routerRedux.push('/poros/dashboard'))
-      // } else {
-      //   throw data
-      // }
+      if (data.success) {
+        // yield put({ type: 'hideLoginLoading' })
+        // yield put({ type: 'app/query' })
+        debugger
+        // yield put(routerRedux.push('/cloudPhoto/dashboard'))
+      } else {
+        throw data.msg
+      }
     },
   },
   reducers: {

@@ -16,6 +16,7 @@ export default modelExtend(pageModel, {
   namespace: 'activityManage',
 
   state: {
+    namespace: 'activityManage',
     currentItem: {},
     // 超时记录对应明细的modal的visible
     Visible: false,
@@ -110,9 +111,9 @@ export default modelExtend(pageModel, {
       const dealSts = (`dealSts=${payload.dealSts !== undefined ? payload.dealSts : ''}`)
       const timeEarlier = (`timeEarlier=${payload.timeEarlier !== undefined ? payload.timeEarlier : ''}`)
       const timeLater = (`timeLater=${payload.timeLater !== undefined ? payload.timeLater : ''}`)
-      // yield window.open (`http://10.10.10.196:8002/poros-web/importBatchExcel?${dealSts}&${timeEarlier}&${timeLater}&${dealSts}`)
+      // yield window.open (`http://10.10.10.196:8002/cloudPhoto-web/importBatchExcel?${dealSts}&${timeEarlier}&${timeLater}&${dealSts}`)
       console.log(location.origin)
-      yield window.location.href = `${location.origin}/poros-web/importBatchExcel?&${timeEarlier}&${timeLater}&${dealSts}`
+      yield window.location.href = `${location.origin}/cloudPhoto-web/importBatchExcel?&${timeEarlier}&${timeLater}&${dealSts}`
     },
     // 查一条
     *queryOne ({ payload = {} }, { call, put, select }) {

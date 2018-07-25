@@ -45,7 +45,6 @@ export default {
     navOpenKeys: ['logo', '首页', '相册展示'],
     // 默认展开的菜单
     // navOpenKeys: JSON.parse(localStorage.getItem(`${prefix}navOpenKeys`)) || [],
-    tabPaneTitle: '设置基本信息',
   },
   subscriptions: {
 
@@ -59,7 +58,6 @@ export default {
         }, 300)
       }
     },
-
   },
   effects: {
     // 定向到活动管理页面
@@ -67,15 +65,6 @@ export default {
       yield put(routerRedux.push({
         pathname: `${webUrl}/routes/activityManage`,
       }))
-    },
-
-    // 更改新建活动页面title
-    *setTabPaneTitle ({ payload }, { put }) {
-      debugger
-      yield put({
-        type: 'setTabPaneTitlesu',
-        payload: payload,
-      })
     },
 
     * query ({
@@ -109,7 +98,7 @@ export default {
             payload: payload,
           })
           console.log(location.pathname)
-          if (location.pathname === '/poros/login') {
+          if (location.pathname === '/cloudPhoto/login') {
             yield put(routerRedux.push(`${webUrl}dashboard`))
           }
         } else {

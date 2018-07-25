@@ -37,8 +37,8 @@ export default {
             type: 'querySuccess',
             payload: data.user,
           })
-          if (location.pathname === '/poros/login') {
-            yield put(routerRedux.push('poros/dashboard'))
+          if (location.pathname === '/cloudPhoto/login') {
+            yield put(routerRedux.push('cloudPhoto/dashboard'))
           }
         } else {
           /* 当config.openPages配置多个页面时，比如openPages: ['/login', '/home']，但是进入/home页面仍然要先登录，所以在app model中如果query不成功需要判断当前页面是否被设置成openPages，再决定是否跳转到/login*/

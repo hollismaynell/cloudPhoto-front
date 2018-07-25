@@ -197,7 +197,7 @@ export default modelExtend(pageModel, {
   subscriptions: {
     setup ({ dispatch, history }) {
       history.listen(location => {
-        if (location.pathname === '/poros/node/levNode') {
+        if (location.pathname === '/cloudPhoto/node/levNode') {
           dispatch({
             type: 'query',
             payload: {

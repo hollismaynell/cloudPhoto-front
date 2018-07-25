@@ -1,12 +1,12 @@
-const APIV1 = '/poros-web'
+const APIV1 = 'http://115.28.191.87:10001'
 const localMock = '/api'
 const local = ''
-// const local = '/poros'
+// const local = '/cloudPhoto'
 module.exports = {
-  webUrl: '/poros',
-  webUrl1: '/poros',
-  name: 'poros',
-  prefix: 'Poros',
+  webUrl: '/cloudPhoto',
+  webUrl1: '/cloudPhoto',
+  name: 'cloudPhoto',
+  prefix: 'CloudPhoto',
   footerText: '云摄影 版权所有',
   logo2: `${local}/blsLogo.png`,
   logo1: `${local}/blsLogo-2.png`,
@@ -24,7 +24,7 @@ module.exports = {
   htmlSrc: `${local}/ifram.html`,
   homeBg: `${local}/home_bg/index.html`,
   CORS: [],
-  openPages: ['/poros/login'],
+  openPages: ['/cloudPhoto/login'],
   apiPrefix: '/api',
   carouselImg1: `${local}/carouselImg1.png`,
   carouselImg2: `${local}/carouselImg2.png`,

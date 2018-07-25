@@ -1,75 +1,71 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Row, Icon, Avatar } from 'antd'
+import { Form, Input, Row } from 'antd'
 import styles from './BasicInfo.less'
-// import AnimTableBody from '../../../components/DataTable/AnimTableBody'
-// import { DropOption } from '../../../components/index'
-// import { JobGroupTypeSelect } from '../../../../utils/selectData'
 
-// const confirm = Modal.confirm
-// const rowProps = {
-//   xs: 24,
-//   sm: 24,
-//   md: 24,
-//   lg: 24,
-// }
-
-const BasicInfo = () => {
-  const handleDelClick = (item) => {
-    item.name
+const FromItem = Form.Item
+const BasicInfo = ({ ...basicProps, form: { getFieldDecorator } }) => {
+  basicProps
+  const formItemLayout = {
+    labelCol: {
+      xs: { span: 2 },
+      sm: { span: 2 },
+      md: { span: 2 },
+      lg: { span: 2, style: {
+        textAlign: 'left',
+        fontWeight: 'bold',
+        lineHeight: '2rem',
+      } },
+    },
+    wrapperCol: {
+      xs: { span: 8 },
+      sm: { span: 8 },
+      md: { span: 8 },
+      lg: { span: 8 },
+    },
   }
-  const CameraList = [
-    {
-      name: '刘先生',
-    },
-    {
-      name: '张小姐',
-    },
-  ]
-  // const handleShareClick = () => {
-  //   confirm({
-  //     content: '确认分享吗？',
-  //     onOk () {},
-  //     onCancel () {},
-  //   })
+  // const formItemLayout = {
+  //   labelCol: {
+  //     xs: { span: 24 },
+  //     sm: { span: 8 },
+  //   },
+  //   wrapperCol: {
+  //     xs: { span: 24 },
+  //     sm: { span: 16 },
+  //   },
   // }
-
-  // const handleSetClick = () => {
-  //   dispatch({
-  //     type: 'acticityManage/changeData',
-  //     payload: {
-  //       visible: true,
-  //     },
-  //   })
-  // }
-
-  // const title = () => { return <h3>超时批量处理</h3> }
+  const rowProps = {
+    xs: { span: 12 },
+    sm: { span: 12 },
+    md: { span: 4 },
+    lg: { span: 4 },
+  }
   return (
-    <div>
-      <Row className={styles.banner} >
-        <h6 className={styles.bannerTitle}>摄影师:<span className={styles.titleClick} ><Icon type="plus" />添加摄影师</span></h6>
+    <div className={styles.banner} >
+      <Row {...rowProps} className={styles.bannerWrap} >
+        <Form layout="vertical" >
+          <FromItem {...formItemLayout} label="相册名称:" >
+            {
+              getFieldDecorator('album', {
+                initialValue: '佳乐巴巴',
+                rules: [
+                  {
+                    require: true,
+                    message: '请输入相册名称',
+                  },
+                ],
+              })(<Input />)
+            }
+          </FromItem>
+        </Form>
       </Row>
-      {
-        CameraList ?
-        CameraList.map(item =>
-          <div style={{ width: '24vw', height: '10vh', border: '1px solid #eee', fontSize: '1.1rem', verticalAlign: 'middle', padding: '1vh 1vw', margin: '2vh 0', overflow: 'hiddden' }} >
-            <span style={{ float: 'left' }} >
-              <Avatar size="large" style={{ height: '8vh', width: '5vw' }} src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-              <div style={{ lineHeight: '4.4rem', float: 'right', paddingLeft: '1vw', fontWeight: 50 }} >
-                {item.name}
-              </div>
-            </span>
-            <div style={{ lineHeight: '4.4rem', float: 'right' }}>
-              <Icon type="close-circle-o" style={{ cursor: 'pointer' }} onClick={handleDelClick.bind(this, item)} />
-            </div>
-          </div>) : ''
-      }
     </div>
   )
 }
 
 BasicInfo.propTypes = {
   basicProps: PropTypes.object,
+  form: PropTypes.object,
 }
 
-export default BasicInfo
+export default Form.create()(BasicInfo)

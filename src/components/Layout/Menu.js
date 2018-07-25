@@ -40,7 +40,7 @@ const Menus = ({ ...menusProps }) => {
       }
       return (
         <Menu.Item key={item.id}>
-          <Link to={`/poros${item.route}`}>
+          <Link to={`/cloudPhoto${item.route}`}>
              {item.icon && <span style={{ marginRight: 4 }} className={item.icon}></span>}
             {(!siderFoldN || !menuTree.includes(item)) && item.name}
           </Link>
@@ -94,7 +94,7 @@ const Menus = ({ ...menusProps }) => {
   for (let item of menu) {
     if (item.route && pathToRegexp(item.route).exec(location.pathname)) {
       currentMenu = item
-      // currentMenu = { route: `poros${currentMenu.route}` }
+      // currentMenu = { route: `cloudPhoto${currentMenu.route}` }
       break
     }
   }
@@ -110,7 +110,7 @@ const Menus = ({ ...menusProps }) => {
     return result
   }
   if (currentMenu) {
-    // currentMenu = { route: `poros${currentMenu.route}` }
+    // currentMenu = { route: `cloudPhoto${currentMenu.route}` }
     defaultSelectedKeys = getPathArray(menu, currentMenu, 'mpid', 'id')
   }
 

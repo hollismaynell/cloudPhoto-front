@@ -26,7 +26,7 @@ export default {
       "pathRewrite": { "^/api/v2" : "" }z
     },
     },*/
-  publicPath: `/poros/`,
+  publicPath: `/cloudPhoto/`,
   outputPath: `./dist/`,
   "env": {
     "development": {

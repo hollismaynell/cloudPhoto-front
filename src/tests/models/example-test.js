@@ -1,5 +1,5 @@
 // function getData(){
-//     $.get('/poros-web/queryBatTxnTimeout', function(data){
+//     $.get('/cloudPhoto-web/queryBatTxnTimeout', function(data){
 //         console.log("Data Loaded:" + data);
 //     })
 // }
@@ -22,7 +22,7 @@ function getData() {
 			console.log('Data Loaded:' + xmlhttp.responseText);
 		}
 	}
-	xmlhttp.open("GET","/poros-web/queryBatTxnTimeout",true);
+	xmlhttp.open("GET","/cloudPhoto-web/queryBatTxnTimeout",true);
 	xmlhttp.send();
 }
 
