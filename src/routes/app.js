@@ -64,6 +64,7 @@ const App = ({ children, dispatch, app, loading, location }) => {
 
   const siderProps = {
     menu,
+    location,
     app,
     siderFold,
     darkTheme,
@@ -88,7 +89,6 @@ const App = ({ children, dispatch, app, loading, location }) => {
     return <div>{children}</div>
   }
   const { iconFontJS, iconFontCSS, logo1, iconMenuCSS, iconMenuJS } = config
-
   return (
     <IntlProvider
       locale={'en'}
@@ -112,10 +112,10 @@ const App = ({ children, dispatch, app, loading, location }) => {
             {/* <aside className={classnames(styles.sider, { [styles.light]: !darkTheme })}>
               <Sider {...siderProps} />
             </aside> */}
+            <div className={styles.siderMenu} >
+              <Sider {...siderProps} />
+            </div>
             <div className={styles.main}>
-              <div className={styles.siderMenu} >
-                <Sider {...siderProps} />
-              </div>
               <Header {...headerProps} />
               <div className={styles.container}>
                 <div key={keyy} className={styles.content}>

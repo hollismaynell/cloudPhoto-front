@@ -10,6 +10,7 @@ import { Helmet } from 'react-helmet'
 const FormItem = Form.Item
 
 const TabPane = Tabs.TabPane
+const RadioGroup = Radio.Group
 
 const ColProps = {
   xs: 12,
@@ -27,19 +28,15 @@ const Login = ({
 }) => {
   const { loginLoading } = login
   const handleOk = () => {
-    // if (localStorage.res === 'true') {
     validateFieldsAndScroll((errors, values) => {
       if (errors) {
         return
       }
+      console.log(values)
       debugger
-      values.location = location
       dispatch({ type: 'login/login', payload: values })
     })
-    localStorage.res = ''
-    // } else {
-      // message.info('验证码错误')
-    // }
+    debugger
   }
   // const handleRegistOk = (e) => {
   //   e.preventDefault()
@@ -91,8 +88,9 @@ const Login = ({
                 </FormItem>
                 <Row>
                   <Col {...ColProps}>
-                    <FormItem hasFeedback>
+                    <FormItem>
                       {getFieldDecorator('isRem', {
+                        initialValue: 'notChecked',
                         rules: [
                           {
                             required: false,
@@ -100,7 +98,9 @@ const Login = ({
                           },
                         ],
                       })(
-                        <Radio className={styles.RadioCss} size="small">记住密码</Radio>
+                        <RadioGroup>
+                          <Radio className={styles.RadioCss} value="checked" size="small">记住密码</Radio>
+                        </RadioGroup>
                       )}
                     </FormItem>
                   </Col>
@@ -160,6 +160,21 @@ const Login = ({
                 </Row>
               </Form>
             </TabPane> */}
+            {/* <Row className={styles.normal} gutter={16} >
+              <Col {...colProps} className={styles.normal_col} >
+                <Card
+                  location
+                  loading
+                  hoverable
+                  cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+                >
+                  <Meta
+                    title="Europe Street beat"
+                    description="www.instagram.com"
+                  />
+                </Card>
+              </Col>
+            </Row> */}
           </Tabs>
         </div>
       </div>

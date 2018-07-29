@@ -1,18 +1,18 @@
 module.exports = [
   {
     id: 1,
-    icon: 'laptop',
+    icon: '',
     bpid: 1,
     name: '首页',
-    router: '/dashboard',
+    route: '/routes/pageHome',
     clickAble: true,
   },
   {
     id: 2,
     bpid: 1,
     name: '相册展示',
-    icon: 'user',
-    router: '/user',
+    icon: '',
+    route: '/routes/albumShow',
     clickAble: true,
   },
   // {

@@ -19,17 +19,19 @@ const Routers = function ({ history, app }) {
       component: App,
       getIndexRoute (nextState, cb) {
         require.ensure([], require => {
-          cb(null, { component: require('./routes/dashboard/') })
+          cb(null, { component: require('./routes/pageHome/') })
         }, 'dashboard')
       },
       childRoutes: [
         {
           /* 首页 */
-          path: `${webUrl}/dashboard`,
+          path: `${webUrl}/routes/pageHome`,
           getComponent (nextState, cb) {
             require.ensure([], require => {
-              cb(null, require('./routes/dashboard/'))
-            }, 'dashboard')
+              registerModel(app, require('./models/app'))
+              registerModel(app, require('./models/pageHome'))
+              cb(null, require('./routes/pageHome/'))
+            }, 'pageHome')
           },
         }, {
           /* 登录 */
@@ -39,6 +41,46 @@ const Routers = function ({ history, app }) {
               registerModel(app, require('./models/login'))
               cb(null, require('./routes/home/'))
             }, 'login')
+          },
+        }, {
+          /* 活动管理 */
+          path: `${webUrl}/routes/activityManage`,
+          getComponent (nextState, cb) {
+            require.ensure([], require => {
+              registerModel(app, require('./models/app'))
+              registerModel(app, require('./models/activityManage.model'))
+              cb(null, require('./routes/activityManage'))
+            }, 'activityManage')
+          },
+        }, {
+          /* 相册展示 */
+          path: `${webUrl}/routes/albumShow`,
+          getComponent (nextState, cb) {
+            require.ensure([], require => {
+              registerModel(app, require('./models/app'))
+              registerModel(app, require('./models/albumShow.model'))
+              cb(null, require('./routes/albumShow'))
+            }, 'albumShow')
+          },
+        }, {
+          /* 新建活动 */
+          path: `${webUrl}/routes/newActivity`,
+          getComponent (nextState, cb) {
+            require.ensure([], require => {
+              registerModel(app, require('./models/app'))
+              registerModel(app, require('./models/newActivity.model'))
+              cb(null, require('./routes/newActivity'))
+            }, 'newActivity')
+          },
+        }, {
+          /* 个人中心 */
+          path: `${webUrl}/routes/personalCenter`,
+          getComponent (nextState, cb) {
+            require.ensure([], require => {
+              registerModel(app, require('./models/app'))
+              registerModel(app, require('./models/personalCenter.model'))
+              cb(null, require('./routes/personalCenter'))
+            }, 'personalCenter')
           },
         }, {
           /* 系统管理-菜单管理 */
@@ -90,26 +132,6 @@ const Routers = function ({ history, app }) {
               registerModel(app, require('./models/organizManage/usersManage.model'))
               cb(null, require('./routes/organizManage/usersManage/'))
             }, 'usersManage')
-          },
-        }, {
-          /* 活动管理 */
-          path: `${webUrl}/routes/activityManage`,
-          getComponent (nextState, cb) {
-            require.ensure([], require => {
-              registerModel(app, require('./models/app'))
-              registerModel(app, require('./models/activityManage.model'))
-              cb(null, require('./routes/activityManage'))
-            }, 'activityManage')
-          },
-        }, {
-          /* 新建活动 */
-          path: `${webUrl}/routes/newActivity`,
-          getComponent (nextState, cb) {
-            require.ensure([], require => {
-              registerModel(app, require('./models/app'))
-              registerModel(app, require('./models/newActivity.model'))
-              cb(null, require('./routes/newActivity'))
-            }, 'newActivity')
           },
         }, {
           /* 系统管理-批量系统管理*/

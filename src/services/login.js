@@ -1,4 +1,4 @@
-import { request, config } from '../utils'
+import { request, config, ajaxRequset } from '../utils'
 
 const { api } = config
 const { userLogin } = api
@@ -27,10 +27,9 @@ export async function singleSign (data) {
 }
 
 export async function login (data) {
-  debugger
-  return request({
+  return ajaxRequset({
     url: userLogin,
-    method: 'post',
-    data,
+    type: 'post',
+    data: data,
   })
 }

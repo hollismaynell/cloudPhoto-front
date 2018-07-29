@@ -6,6 +6,7 @@ import lodash from 'lodash'
 import editCell from './editCell'
 import moment from 'moment'
 import menuHeader from './menu.header'
+import ajaxRequset from './ajaxRequset'
 
 
 // 连字符转驼峰
@@ -216,4 +217,5 @@ module.exports = {
   editCell,
   translateData,
   menuHeader,
+  ajaxRequset,
 }

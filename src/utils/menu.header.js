@@ -6,13 +6,20 @@ module.exports = [
     name: '个人中心',
     route: '/routes/',
     clickAble: true,
+  }, {
+    id: 2,
+    icon: 'laptop',
+    bpid: 1,
+    name: '相册展示',
+    route: '/albumDisplay',
+    clickAble: true,
   },
   {
     id: 11,
     bpid: 1,
     mpid: 1,
-    name: '我的活动',
-    route: '/routes/activityManage',
+    name: '相册展示',
+    route: '/routes/albumDisplay',
     clickAble: true,
   },
   {

@@ -19,7 +19,7 @@ const MyBread = () => {
 
   const breadProps = { menu }
   return (
-    <div style={{ margin: '0 10vw', overflow: 'hidden' }} >
+    <div style={{ margin: '2vh 10vw 0', overflow: 'hidden', height: '40px', lineHeight: '40px', verticalAlign: 'middle' }} >
       <Col {...colProps} style={{ verticalAlign: 'middle', height: '2vh', fontSize: '2rem', color: '#ffaf60' }} ><Icon type="link" /></Col>
       <Col {...colProps1} style={{ marginLeft: '-2vw' }} ><Bread {...breadProps} /></Col>
     </div>
