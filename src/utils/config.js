@@ -24,7 +24,7 @@ module.exports = {
   htmlSrc: `${local}/ifram.html`,
   homeBg: `${local}/home_bg/index.html`,
   CORS: [],
-  openPages: ['/cloudPhoto/login', '/cloudPhoto/routes/albumDisplay', '/cloudPhoto/routes/dashboard', '/', '/cloudPhoto', '/cloudPhoto/routes'],
+  openPages: ['/cloudPhoto/login', '/cloudPhoto/routes/albumShow', '/cloudPhoto/routes/dashboard', '/', '/cloudPhoto', '/cloudPhoto/routes', '/cloudPhoto/routes/'],
   dashboardPages: ['/', '/cloudPhoto', '/cloudPhoto/', '/cloudPhoto/routes'],
   apiPrefix: '/api',
   carouselImg1: `${local}/carouselImg1.png`,

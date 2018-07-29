@@ -160,21 +160,6 @@ const Login = ({
                 </Row>
               </Form>
             </TabPane> */}
-            {/* <Row className={styles.normal} gutter={16} >
-              <Col {...colProps} className={styles.normal_col} >
-                <Card
-                  location
-                  loading
-                  hoverable
-                  cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-                >
-                  <Meta
-                    title="Europe Street beat"
-                    description="www.instagram.com"
-                  />
-                </Card>
-              </Col>
-            </Row> */}
           </Tabs>
         </div>
       </div>
