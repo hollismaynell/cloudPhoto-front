@@ -43,7 +43,6 @@ const Filter = ({
     form: {
       getFieldDecorator,
       getFieldsValue,
-      setFieldsValue,
       validateFields,
     },
   }) => {
@@ -57,7 +56,7 @@ const Filter = ({
         ...getFieldsValue(),
       }
       dispatch({
-        type: 'queryBatTxnTimeout/initTime',
+        type: 'activityManage/initTime',
         payload: {
           initTime: fields.txnTime,
           dealSts: fields.dealSts,
@@ -70,20 +69,10 @@ const Filter = ({
   //   let fields = getFieldsValue()
   //   handleSubmitExport(fields)
   // }
-  const handleReset = () => {
-    const fields = getFieldsValue()
-    for (let item in fields) {
-      if ({}.hasOwnProperty.call(fields, item)) {
-        if (fields[item] instanceof Array) {
-          fields[item] = fields[item]
-        } else {
-          fields[item] = undefined
-          dealSts = ''
-        }
-      }
-    }
-    setFieldsValue(fields)
-    handleSubmit()
+  const newActivity = () => {
+    dispatch({
+      type: 'activityManage/goToNewActivity',
+    })
   }
   return (
     <Form.Item>
@@ -109,7 +98,7 @@ const Filter = ({
         </Col>
         <Col {...TwoColProps} xl={{ span: 22 }} md={{ span: 22 }} sm={{ span: 24 }}>
           <div style={{ marginTop: '1vh', width: '50vw' }}>
-            <Button size="large" type="primary" onClick={handleSubmit} style={{ float: 'left' }}>搜索</Button>&nbsp;&nbsp;&nbsp;<Button size="large" type="dashed" onClick={handleReset} style={{ float: 'right' }}>新建活动</Button>
+            <Button size="large" type="primary" onClick={handleSubmit} style={{ float: 'left' }}>搜索</Button>&nbsp;&nbsp;&nbsp;<Button size="large" type="dashed" onClick={newActivity} style={{ float: 'right' }}>新建活动</Button>
             {/* &nbsp;&nbsp;&nbsp;<Button size="large" type="primary" icon="download" onClick={handleSubmitOne}>导出</Button> */}
           </div>
         </Col>

@@ -30,10 +30,6 @@ const BatchTitle = {
     marginTop: 4,
   },
 }
-const TwoColProps = {
-  ...ColProps,
-  xl: 96,
-}
 const Filter = ({
     // handleSubmitExport,
     onFilterChange,
@@ -89,16 +85,16 @@ const Filter = ({
                 ],
               })(<Select style={{ width: '20vw' }} placeholder="请选择" >
                 <SelectOption value="11">全部</SelectOption>
-                <SelectOption value="43">已同步</SelectOption>
-                <SelectOption value="42">同步中</SelectOption>
-                <SelectOption value="41">未处理</SelectOption>
-                <SelectOption value="00">忽略</SelectOption>
+                <SelectOption value="1">未开始</SelectOption>
+                <SelectOption value="2">进行中</SelectOption>
+                <SelectOption value="3">已结束</SelectOption>
+                <SelectOption value="4">已取消</SelectOption>
               </Select>)}
           </FormItem>
         </Col>
-        <Col {...TwoColProps} xl={{ span: 22 }} md={{ span: 22 }} sm={{ span: 24 }}>
-          <div style={{ marginTop: '1vh', width: '50vw' }}>
-            <Button size="large" type="primary" onClick={handleSubmit} style={{ float: 'left' }}>搜索</Button>&nbsp;&nbsp;&nbsp;<Button size="large" type="dashed" onClick={newActivity} style={{ float: 'right' }}>新建活动</Button>
+        <Col xl={{ span: 4 }} md={{ span: 4 }} sm={{ span: 4 }}>
+          <div style={{ width: '50vw' }}>
+            <Button type="primary" onClick={handleSubmit} style={{ float: 'left' }}>搜索</Button>&nbsp;&nbsp;&nbsp;<Button type="primary" onClick={newActivity} style={{ float: 'right' }}>新建活动</Button>
             {/* &nbsp;&nbsp;&nbsp;<Button size="large" type="primary" icon="download" onClick={handleSubmitOne}>导出</Button> */}
           </div>
         </Col>

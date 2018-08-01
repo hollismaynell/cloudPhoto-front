@@ -1,6 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Menu, Icon } from 'antd'
+// import { routerRedux } from 'dva/router'
+// import { config } from '../../utils'
+// const { webUrl } = config
 // import styles from './Header.less'
 
 // import { FormattedMessage } from 'react-intl'
@@ -16,6 +19,11 @@ const Header = ({ ...headerProps }) => {
 
   let handleClickMenu = e => {
     switch (e.key) {
+      case 'personalCenter':
+        // dispatch(routerRedux.push({
+        //   pathname: `${webUrl}/routes/personalCenter`,
+        // }))
+        break
       case 'activityManage':
         dispatch({
           type: 'app/goToActivityManege',
@@ -32,7 +40,7 @@ const Header = ({ ...headerProps }) => {
     //   <div className={styles.rightWarpper}>
     <Menu style={{ position: 'absolute', top: 0, right: '15vw', zIndex: 999, color: '#eee', background: '#4a4aff' }} mode="horizontal" onClick={handleClickMenu} >
       <SubMenu title={< span > <Icon type="user" /> {user.username ? user.username : 'Amanda'} </span>}>
-        <Menu.Item key="login" style={{ background: '#4a4aff' }} >
+        <Menu.Item key="personalCenter" style={{ background: '#4a4aff' }} >
           个人中心
         </Menu.Item>
         <Menu.Item key="activityManage" style={{ background: '#4a4aff' }}>

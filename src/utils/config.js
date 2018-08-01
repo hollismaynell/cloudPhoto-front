@@ -129,5 +129,12 @@ module.exports = {
     queryExport: `${APIV1}/importSignExcel`,
     /* **** 收录 *******/
     querySingleTrade: `${APIV1}/webSingleTrade`,
+    /* **** 相册展示 *******/
+    activeSelect: `${APIV1}/active/select`,
+    /* **** 活动管理 *******/
+    // 我创建的活动
+    createActive: `${APIV1}/active/myActive`,
+    // 我参与的活动
+    joinActive: `${APIV1}/active/activeList`,
   },
 }

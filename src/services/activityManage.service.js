@@ -1,6 +1,6 @@
-import { request, config } from '../utils'
+import { request, config, ajaxRequset } from '../utils'
 const { api } = config
-const { queryBatTxnTimeout, queryBatDtlTimeout, synchBatTxnTimeout, ignoreBatTxnTimeout, BatchExport } = api
+const { queryBatTxnTimeout, queryBatDtlTimeout, synchBatTxnTimeout, ignoreBatTxnTimeout, BatchExport, createActive, joinActive } = api
 
 export async function query (params) {
   return request({
@@ -38,6 +38,22 @@ export async function queryExport (params) {
   return request({
     url: BatchExport,
     method: 'get',
+    data: params,
+  })
+}
+// 我创建的活动
+export async function queryCreateActive (params) {
+  return ajaxRequset({
+    url: createActive,
+    method: 'post',
+    data: params,
+  })
+}
+// 我参与的活动
+export async function queryJoinActive (params) {
+  return ajaxRequset({
+    url: joinActive,
+    method: 'post',
     data: params,
   })
 }

@@ -2,20 +2,126 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { routerRedux } from 'dva/router'
 import { connect } from 'dva'
+import Cookies from 'js-cookie'
 import { List, AddModal, Filter, SynchAndIgnoreModal } from './components'
 import styles from './index.less'
-import { Row, Tabs } from 'antd'
+import { Row, Tabs, Button, Modal } from 'antd'
 import MyBread from '../../components/MyBread'
 // import { Bread } from '../../components/Layout'
 // const menu = require('../../utils/menu.header')
 
 const TabPane = Tabs.TabPane
+const confirm = Modal.confirm
 
 const ActivityManage = ({ location, dispatch, activityManage, loading }) => {
-  const { list, pagination, effectFlag, invalidFlag, modalKey, synchIgnoreModalKey, modalType, Visible, SynchIgnoreVisible, updateData, paginationDetail, initTime, dealSts, currentRecordRowCode, currentRecordRowStatus } = activityManage
+  const { effectFlag, invalidFlag, modalKey, synchIgnoreModalKey, modalType, Visible, SynchIgnoreVisible, updateData, paginationDetail, initTime, dealSts, currentRecordRowCode, currentRecordRowStatus, createActiveList, pagination, joinActiveList, paginationJoin, namespace } = activityManage
   const { pageSize } = pagination
-  const listProps = {
-    dataSource: list,
+  const changeMeaning = (text) => {
+    switch (text) {
+      case '1':
+        return '未开始'
+      case '2':
+        return '进行中'
+      case '3':
+        return '已结束'
+      case '4':
+        return '已取消'
+      default:
+        return text
+    }
+  }
+  const handleShareClick = () => {
+    confirm({
+      content: '确认分享吗？',
+      onOk () {},
+      onCancel () {},
+    })
+  }
+
+  const handleSetClick = () => {
+    dispatch({
+      type: 'acticityManage/changeData',
+      payload: {
+        visible: true,
+      },
+    })
+  }
+  // 我参与的
+  const joinColumns = [
+    {
+      title: '相册名称',
+      dataIndex: 'title',
+      key: 'title',
+    }, {
+      title: '日期',
+      dataIndex: 'beginDate',
+      key: 'beginDate',
+    }, {
+      title: '地点',
+      dataIndex: 'location',
+      key: 'location',
+    }, {
+      title: '照片数',
+      dataIndex: 'dealStsDesc',
+      key: 'dealStsDesc',
+    }, {
+      title: '所属用户',
+      dataIndex: 'belongToUser',
+      key: 'belongToUser',
+    }, {
+      title: '状态',
+      dataIndex: 'status',
+      key: 'status',
+      render: text => <span>{changeMeaning(text)}</span>,
+    }, {
+      title: '操作',
+      key: 'operation',
+      width: '10vw',
+      render: (text, record) => {
+        return <div><Button size="small" record={record} text={text} type="primary" onClick={handleShareClick} >相册</Button>&nbsp;&nbsp;&nbsp;<Button size="small" type="primary" onClick={handleSetClick} >找人</Button></div>
+      },
+    },
+  ]
+
+  // 我创建的
+  const createColumns = [
+    {
+      title: '相册名称',
+      dataIndex: 'title',
+      key: 'title',
+    }, {
+      title: '日期',
+      dataIndex: 'beginDate',
+      key: 'beginDate',
+    }, {
+      title: '地点',
+      dataIndex: 'location',
+      key: 'location',
+    }, {
+      title: '照片数',
+      dataIndex: 'dealStsDesc',
+      key: 'dealStsDesc',
+    }, {
+      title: '所属用户',
+      dataIndex: 'belongToUser',
+      key: 'belongToUser',
+    }, {
+      title: '状态',
+      dataIndex: 'status',
+      key: 'status',
+      render: (text) => <span>{changeMeaning(text)}</span>,
+    }, {
+      title: '操作',
+      key: 'operation',
+      width: '15vw',
+      render: (text, record) => {
+        return <div><Button size="small" record={record} text={text} type="primary" onClick={handleShareClick} >相册</Button>&nbsp;&nbsp;&nbsp;<Button size="small" type="primary" onClick={handleSetClick} >找人</Button>&nbsp;&nbsp;&nbsp;<Button size="small" type="primary" onClick={handleSetClick} >设置</Button></div>
+      },
+    },
+  ]
+  // 查询我创建的活动列表
+  const createListProps = {
+    dataSource: createActiveList,
     dispatch,
     loading,
     pagination,
@@ -32,6 +138,45 @@ const ActivityManage = ({ location, dispatch, activityManage, loading }) => {
         },
       }))
     },
+    columns: createColumns,
+  }
+  // 查询我参与的活动列表
+  const joinListProps = {
+    dataSource: joinActiveList,
+    dispatch,
+    loading,
+    pagination: paginationJoin,
+    onChangeRadio () { },
+    location,
+    onChange (page) {
+      const { query, pathname } = location
+      dispatch(routerRedux.push({
+        pathname,
+        query: {
+          ...query,
+          page: page.current,
+          pageSize: page.pageSize,
+        },
+      }))
+    },
+    columns: joinColumns,
+  }
+  // tab切换函数
+  const handleTabsChange = (key) => {
+    if (key === '2') {
+      let token = JSON.parse(Cookies.get('token'))
+      if (!createActiveList.length) {
+        dispatch({
+          type: `${namespace}/queryCreateActiv`,
+          payload: {
+            ...location.query,
+            userId: token.data.id,
+            page: Number(location.query.page) || 1,
+            size: Number(location.query.pageSize) || 10,
+          },
+        })
+      }
+    }
   }
   const filterProps = {
     dealSts,
@@ -143,16 +288,16 @@ const ActivityManage = ({ location, dispatch, activityManage, loading }) => {
         </Row>
       </div>
       <MyBread />
-      <Tabs className={styles.normal} >
-        <TabPane tab="我创建的" key="1" >
+      <Tabs className={styles.normal} onChange={handleTabsChange} >
+        <TabPane tab="我参与的" key="1" >
           <Filter {...filterProps} key={Math.random()} />
-          <List {...listProps} />
+          <List {...joinListProps} />
           <AddModal {...addModalProps} key={modalKey} />
           <SynchAndIgnoreModal {...synchIgnoreModalProps} key={synchIgnoreModalKey} />
         </TabPane>
-        <TabPane tab="我参与的" key="2" >
+        <TabPane tab="我创建的" key="2" >
           <Filter {...filterProps} key={Math.random()} />
-          <List {...listProps} />
+          <List {...createListProps} />
           <AddModal {...addModalProps} key={modalKey} />
           <SynchAndIgnoreModal {...synchIgnoreModalProps} key={synchIgnoreModalKey} />
         </TabPane>

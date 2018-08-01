@@ -1,22 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-// import { routerRedux } from 'dva/router'
 import { connect } from 'dva'
-// import { List, AddModal, Filter, SynchAndIgnoreModal } from './components'
 import styles from './index.less'
-import { Row, Col, Card } from 'antd'
+import { Row, Tabs } from 'antd'
 import MyBread from '../../components/MyBread'
+import { List } from './components'
 // import { Bread } from '../../components/Layout'
 // const menu = require('../../utils/menu.header')
 
-// const TabPane = Tabs.TabPane
-const Meta = Card.Meta
-
-const AlbumShow = ({ location, dispatch, albumShow, loading }) => {
-  location
+const TabPane = Tabs.TabPane
+const AlbumShow = ({ dispatch, loading, location, albumShow }) => {
   dispatch
-  albumShow
   loading
+  location
   const rowProps = {
     xs: 24,
     sm: 24,
@@ -24,38 +20,29 @@ const AlbumShow = ({ location, dispatch, albumShow, loading }) => {
     lg: 24,
   }
 
-  const colProps = {
-    xs: 8,
-    sm: 8,
-    md: 8,
-    lg: 8,
-  }
-
+  const { list } = albumShow
+  debugger
+  const listProps = { list }
   return (
     <div className={styles.normalWrap} >
       <div className={styles.normalTitle} >
         <Row className={styles.banner} {...rowProps}>
-          <h6 style={{ fontSize: '1.5rem', color: '#fff', fontWeight: 50, lineHeight: '3rem' }}>活动管理</h6>
-          <h6 style={{ fontSize: '0.8rem', color: '#fff', fontWeight: 50 }}>INTERNET  ECOLOGICAL SUMMIT</h6>
+          <h6 style={{ fontSize: '1.5rem', color: '#fff', fontWeight: 50, lineHeight: '3rem' }}>相册展示</h6>
+          <h6 style={{ fontSize: '0.8rem', color: '#fff', fontWeight: 50 }}>高效便捷云线上摄影相册，一键查看</h6>
         </Row>
       </div>
       <MyBread />
-      <Row className={styles.normal} gutter={16} >
-        <Col {...colProps} className={styles.normal_col} >
-          <Card
-            location
-            loading
-            hoverable
-            cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-          >
-            <Meta
-              title="Europe Street beat"
-              description="www.instagram.com"
-            />
-          </Card>
-        </Col>
-      </Row>
-
+      <Tabs className={styles.normal} >
+        <TabPane tab="全部" key="1" >
+          <List {...listProps} />
+        </TabPane>
+        <TabPane tab="中式" key="2" >
+          <List {...listProps} />
+        </TabPane>
+        <TabPane tab="西式" key="3" >
+          <List {...listProps} />
+        </TabPane>
+      </Tabs>
     </div>
   )
 }

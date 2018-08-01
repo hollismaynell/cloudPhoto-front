@@ -2,8 +2,9 @@ import modelExtend from 'dva-model-extend'
 import React from 'react'
 import { FormattedMessage } from 'react-intl'
 import queryString from 'query-string'
+import Cookies from 'js-cookie'
 // import { message } from 'antd'
-import { query, queryOne, synchOne, ignoreOne } from '../services/activityManage.service'
+import { query, queryOne, synchOne, ignoreOne, queryCreateActive, queryJoinActive } from '../services/activityManage.service'
 // import { querySys } from '../../services/organizManage/usersManage.service'
 import { pageModel } from './common'
 import moment from 'moment'
@@ -25,13 +26,6 @@ export default modelExtend(pageModel, {
     modalType: 'synch',
     selectedRowKeys: [],
     updateData: [],
-    paginationDetail: {
-      showSizeChanger: true,
-      showQuickJumper: true,
-      showTotal: total => <span><FormattedMessage id="pageTotal" /> {total} <FormattedMessage id="pageItem" /> </span>,
-      current: 1,
-      total: 0,
-    },
     updateFlag: false,
     complianceSel: [],
     modalKey: 1,
@@ -45,40 +39,38 @@ export default modelExtend(pageModel, {
     currentRecordRowStatus: '',
     currentPage: 1,
     currentPageSize: 10,
-    list: [
-      {
-        trcNo: '12344',
-        txnTtl: '2018-05-02',
-        txnTimeString: '中国-北京',
-        dealStsDesc: 666,
-        overTimeString: 666,
-        belongToUser: 'Amanda',
-        state: '已分享',
-      },
-    ],
+    createActiveList: [], // 我创建的活动
+    pagination: {
+      showSizeChanger: true,
+      showQuickJumper: true,
+      showTotal: total => <span><FormattedMessage id="pageTotal" /> {total} <FormattedMessage id="pageItem" /> </span>,
+      current: 1,
+      total: 0,
+    }, // 我创建的活动
+    joinActiveList: [], // 我参与的活动
+    paginationJoin: {
+      showSizeChanger: true,
+      showQuickJumper: true,
+      showTotal: total => <span><FormattedMessage id="pageTotal" /> {total} <FormattedMessage id="pageItem" /> </span>,
+      current: 1,
+      total: 0,
+    }, // 我参与的活动
   },
 // pathname 菜单路径
   subscriptions: {
     setup ({ dispatch, history }) {
       history.listen(location => {
-        if (location.pathname === `${webUrl}/queryBatTxnTimeout`) {
+        if (location.pathname === `${webUrl}/routes/activityManage`) {
+          const token = JSON.parse(Cookies.get('token'))
           dispatch({
-            type: 'query',
+            type: 'queryJoinActiv',
             payload: {
               ...location.query,
+              userId: token.data.id,
               page: Number(location.query.page) || 1,
-              pageSize: Number(location.query.pageSize) || 10,
+              size: Number(location.query.pageSize) || 10,
             },
           })
-          if (location.search === '') {
-            dispatch({
-              type: 'initTime',
-              payload: {
-                initTime: [moment('00:00:00', 'HH:mm:ss'), moment()],
-                dealSts: '',
-              },
-            })
-          }
         }
       })
     },
@@ -174,6 +166,41 @@ export default modelExtend(pageModel, {
         pathname: `${webUrl}/routes/newActivity`,
       }))
     },
+    // 查询我创建的活动列表
+    *queryCreateActiv ({ payload = {} }, { call, put }) {
+      const data = JSON.parse(yield call(queryCreateActive, payload))
+      if (data.success) {
+        yield put({
+          type: 'queryCreateActiveSuccess',
+          payload: {
+            list: data.data,
+            pagination: {
+              current: Number(payload.page) || 1,
+              pageSize: Number(payload.pageSize) || 10,
+              total: data.total,
+            },
+          },
+        })
+      }
+    },
+
+    // 查询我参与的活动列表
+    *queryJoinActiv ({ payload = {} }, { call, put }) {
+      const data = JSON.parse(yield call(queryJoinActive, payload))
+      if (data.success) {
+        yield put({
+          type: 'queryJoinActiveSuccess',
+          payload: {
+            list: data.data,
+            pagination: {
+              current: Number(payload.page) || 1,
+              pageSize: Number(payload.pageSize) || 10,
+              total: data.total,
+            },
+          },
+        })
+      }
+    },
   },
 
   reducers: {
@@ -245,6 +272,29 @@ export default modelExtend(pageModel, {
         ...state,
         initTime,
         dealSts,
+      }
+    },
+    // 我创建的活动查询成功
+    queryCreateActiveSuccess (state, { payload }) {
+      const { list, pagination } = payload
+      return {
+        ...state,
+        createActiveList: list,
+        pagination: {
+          ...state.pagination,
+          ...pagination,
+        },
+      }
+    },
+    queryJoinActiveSuccess (state, { payload }) {
+      const { list, pagination } = payload
+      return {
+        ...state,
+        joinActiveList: list,
+        paginationJoin: {
+          ...state.paginationJoin,
+          ...pagination,
+        },
       }
     },
   },

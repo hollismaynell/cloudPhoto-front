@@ -8,7 +8,6 @@ import { query, queryOne, synchOne, ignoreOne } from '../services/personalCenter
 import { pageModel } from './common'
 import moment from 'moment'
 import { config } from '../utils'
-import { routerRedux } from 'dva/router'
 const { prefix } = config
 const { webUrl } = config
 
@@ -45,17 +44,7 @@ export default modelExtend(pageModel, {
     currentRecordRowStatus: '',
     currentPage: 1,
     currentPageSize: 10,
-    list: [
-      {
-        trcNo: '12344',
-        txnTtl: '2018-05-02',
-        txnTimeString: '中国-北京',
-        dealStsDesc: 666,
-        overTimeString: 666,
-        belongToUser: 'Amanda',
-        state: '已分享',
-      },
-    ],
+    tabPaneTitle: '设置基本信息',
   },
 // pathname 菜单路径
   subscriptions: {
@@ -84,6 +73,14 @@ export default modelExtend(pageModel, {
     },
   },
   effects: {
+
+    *setTabPaneTitle ({ payload }, { put }) {
+      debugger
+      yield put({
+        type: 'setTabPaneTitlesu',
+        payload: payload,
+      })
+    },
 
     *query ({ payload = {} }, { call, put }) {
       const data = yield call(query, payload)
@@ -168,15 +165,13 @@ export default modelExtend(pageModel, {
         throw data
       }
     },
-    // 定向到新建活动页面
-    *goToNewActivity ({ payload }, { put }) {
-      yield put(routerRedux.push({
-        pathname: `${webUrl}/routes/newActivity`,
-      }))
-    },
   },
 
   reducers: {
+
+    setTabPaneTitlesu (state, { payload }) {
+      return { ...state, ...payload }
+    },
 
     // 超时记录对应明细modal显示
     showAddModal (state, { payload }) {

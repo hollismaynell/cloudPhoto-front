@@ -1,139 +1,62 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { routerRedux } from 'dva/router'
 import { connect } from 'dva'
-import { List, AddModal, Filter, SynchAndIgnoreModal } from './components'
 import styles from './index.less'
-import { Row, Tabs } from 'antd'
+import { Tabs, Row } from 'antd'
+import { BasicInfo, PhotoGroup, Watermark, StartPage, TopBanner, BottomBanner, CameraMan, Retoucher } from './components'
 import MyBread from '../../components/MyBread'
-// import { Bread } from '../../components/Layout'
-// const menu = require('../../utils/menu.header')
 
 const TabPane = Tabs.TabPane
+const rowProps = {
+  xs: 24,
+  sm: 24,
+  md: 24,
+  lg: 24,
+}
 
-const PersonalCenter = ({ location, dispatch, personalCenter, loading }) => {
-  const { list, pagination, effectFlag, invalidFlag, modalKey, synchIgnoreModalKey, modalType, Visible, SynchIgnoreVisible, updateData, paginationDetail, initTime, dealSts, currentRecordRowCode, currentRecordRowStatus } = personalCenter
-  const { pageSize } = pagination
-  const listProps = {
-    dataSource: list,
-    dispatch,
-    loading,
-    pagination,
-    onChangeRadio () { },
-    location,
-    onChange (page) {
-      const { query, pathname } = location
-      dispatch(routerRedux.push({
-        pathname,
-        query: {
-          ...query,
-          page: page.current,
-          pageSize: page.pageSize,
-        },
-      }))
-    },
+const PersonalCenter = ({ location, dispatch, loading, personalCenter }) => {
+  const { tabPaneTitle } = personalCenter
+  const basicProps = { location, dispatch, loading }
+  const handleKeyChange = (key) => {
+    let title
+    switch (key) {
+      case '1':
+        title = '设置基本信息'
+        break
+      case '2':
+        title = '添加照片分组'
+        break
+      case '3':
+        title = '添加水印'
+        break
+      case '4':
+        title = '设置启动页'
+        break
+      case '5':
+        title = '设置顶部宣传栏'
+        break
+      case '6':
+        title = '设置底部推广栏'
+        break
+      case '7':
+        title = '添加修图师'
+        break
+      case '8':
+        title = '添加摄影师'
+        break
+      case '9':
+        title = '设置模板'
+        break
+      default:
+    }
+    debugger
+    dispatch({
+      type: 'personalCenter/setTabPaneTitle',
+      payload: {
+        tabPaneTitle: title,
+      },
+    })
   }
-  const filterProps = {
-    dealSts,
-    initTime,
-    dispatch,
-    effectFlag,
-    invalidFlag,
-    filter: {
-      ...location.query,
-    },
-    handleSubmitExport (value) {
-      dispatch({
-        type: 'personalCenter/queryExport',
-        payload: {
-          ...value,
-        },
-      })
-    },
-    onFilterChange (value) {
-      const { txnTime } = value
-      if (txnTime && txnTime.length) {
-        let a = [txnTime[0].format('YYYY-MM-DD')]
-        let b = [txnTime[1].format('YYYY-MM-DD')]
-        value.timeEarlier = [`${a} 00:00:00`]
-        value.timeLater = [`${b} 23:59:59`]
-        /*    value.timeEarlier = [txnTime[0].format('YYYY-MM-DD HH:mm:ss')]
-            value.timeLater = [txnTime[1].format('YYYY-MM-DD HH:mm:ss')]*/
-        // delete value.txnTime
-      }
-      dispatch(routerRedux.push({
-        pathname: location.pathname,
-        query: {
-          ...value,
-          page: 1,
-          pageSize,
-        },
-      }))
-    },
-  }
-  const onSynchIgnoreOk = () => {
-    modalType === 'synch' ?
-      dispatch({
-        type: 'personalCenter/synchOne',
-        payload: {
-          trcNo: currentRecordRowCode,
-          dealSts: currentRecordRowStatus,
-        },
-      }) : dispatch({
-        type: 'personalCenter/ignoreOne',
-        payload: {
-          trcNo: currentRecordRowCode,
-          dealSts: currentRecordRowStatus,
-        },
-      })
-  }
-
-  // 超时记录对应明细的modal
-  const addModalProps = {
-    title: '批量查询详情',
-    updateData,
-    paginationDetail,
-    key: modalKey,
-    modalType,
-    visible: Visible,
-    dispatch,
-    currentRecordRowCode,
-    onOk () {
-      dispatch({
-        type: 'personalCenter/hideAddModal',
-      })
-    },
-    onCancel () {
-      dispatch({
-        type: 'personalCenter/hideAddModal',
-      })
-    },
-    loading,
-  }
-
-  // 同步或者忽略操作对应的modal
-  const synchIgnoreModalProps = {
-    title: `${modalType === 'synch' ? '同步操作' : '忽略操作'}`,
-    key: synchIgnoreModalKey,
-    modalType,
-    visible: SynchIgnoreVisible,
-    dispatch,
-    onOk: onSynchIgnoreOk,
-    onCancel () {
-      dispatch({
-        type: 'personalCenter/hideSynchIgnoreModal',
-      })
-    },
-    loading,
-  }
-
-  const rowProps = {
-    xs: 24,
-    sm: 24,
-    md: 24,
-    lg: 24,
-  }
-
   return (
     <div className={styles.normalWrap} >
       <div className={styles.normalTitle} >
@@ -143,30 +66,50 @@ const PersonalCenter = ({ location, dispatch, personalCenter, loading }) => {
         </Row>
       </div>
       <MyBread />
-      <Tabs className={styles.normal} >
-        <TabPane tab="我创建的" key="1" >
-          <Filter {...filterProps} key={Math.random()} />
-          <List {...listProps} />
-          <AddModal {...addModalProps} key={modalKey} />
-          <SynchAndIgnoreModal {...synchIgnoreModalProps} key={synchIgnoreModalKey} />
+      <Row className={styles.Tips} {...rowProps}>
+        <h6 style={{ fontSize: '1.3rem', fontWeight: 600, lineHeight: '3rem' }}>{tabPaneTitle}</h6>
+        {tabPaneTitle === '设置基本信息' ? '' : <span>
+          <h6 style={{ fontSize: '0.9rem', color: '#777', lineHeight: '2.2rem', fontWeight: 50 }} >张文文小姐和李时时先生的婚礼</h6>
+          <p style={{ fontSize: '0.8rem', color: '#aaa', lineHeight: '2rem', fontWeight: 50 }} >2018-03-02 青岛市黄岛区希尔顿大酒店</p>
+        </span>}
+        <hr />
+      </Row>
+      <Tabs className={styles.normal} tabPosition="left" onTabClick={handleKeyChange} >
+        <TabPane tab="设置基本信息" key="1" >
+          <BasicInfo {...basicProps} />
         </TabPane>
-        <TabPane tab="我参与的" key="2" >
-          <Filter {...filterProps} key={Math.random()} />
-          <List {...listProps} />
-          <AddModal {...addModalProps} key={modalKey} />
-          <SynchAndIgnoreModal {...synchIgnoreModalProps} key={synchIgnoreModalKey} />
+        <TabPane tab="添加照片分组" key="2" >
+          <PhotoGroup />
         </TabPane>
+        <TabPane tab="添加水印" key="3" >
+          <Watermark />
+        </TabPane>
+        <TabPane tab="设置启动页" key="4" >
+          <StartPage />
+        </TabPane>
+        <TabPane tab="设置顶部宣传栏" key="5" >
+          <TopBanner />
+        </TabPane>
+        <TabPane tab="设置底部推广栏" key="6" >
+          <BottomBanner />
+        </TabPane>
+        <TabPane tab="添加修图师" key="7" >
+          <Retoucher />
+        </TabPane>
+        <TabPane tab="添加摄影师" key="8" >
+          <CameraMan />
+        </TabPane>
+        <TabPane tab="设置模板" key="9" />
       </Tabs>
-
     </div>
   )
 }
 
 PersonalCenter.propTypes = {
   personalCenter: PropTypes.object,
+  loading: PropTypes.object,
   location: PropTypes.object,
   dispatch: PropTypes.func,
-  loading: PropTypes.object,
 }
 
-export default connect(({ personalCenter, loading }) => ({ personalCenter, loading: loading.models.personalCenter }))(PersonalCenter)
+export default connect(({ loading, personalCenter }) => ({ loading, personalCenter }))(PersonalCenter)
